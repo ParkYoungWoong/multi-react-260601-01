@@ -1,28 +1,27 @@
-import { useState } from 'react'
+import axios from 'axios'
+import { useState, useEffect } from 'react'
 
 export default function App() {
-  // const fruits = ['사과', '망고', '바나나']
-  const [fruits, setFruits] = useState(['사과', '망고', '바나나'])
-  const [text, setText] = useState('')
+  const [movies, setMovies] = useState([])
+
+  // useEffect(실행할함수, 의존성배열)
+  useEffect(() => {
+    async function fetchMovies() {
+      const { data } = await axios.get(
+        'https://omdbapi.com?apikey=7035c60c&s=spider'
+      )
+      // const movies = data.Search
+      setMovies(data.Search)
+    }
+    fetchMovies()
+  }, [])
 
   return (
     <>
-      <h1>과일 리스트</h1>
-      <input
-        type="text"
-        value={text}
-        onChange={event => setText(event.target.value)}
-        onKeyDown={event => {
-          if (event.key === 'Enter') {
-            // fruits.unshift(text)
-            setFruits([text, ...fruits])
-          }
-        }}
-      />
       <ul>
-        {fruits.map(fruit => (
-          <li key={fruit}>{fruit}</li>
-        ))}
+        {movies.map(movie => {
+          return <li key={movie.imdbID}>{movie.Title}</li>
+        })}
       </ul>
     </>
   )
