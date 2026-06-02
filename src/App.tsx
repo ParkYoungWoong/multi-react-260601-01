@@ -15,11 +15,11 @@ export default function App() {
         ref={inputRef}
         type="text"
       />
-      <Button
-        type="submit"
-        onClick={() => console.log('클릭했어요!')}>
-        검색
-      </Button>
+      <Button variant="primary">검색</Button>
+      <Button variant="primary">저장</Button>
+      <Button variant="secondary">취소</Button>
+      <Button variant="danger">삭제</Button>
+      <Button>확인</Button>
     </>
   )
 }
