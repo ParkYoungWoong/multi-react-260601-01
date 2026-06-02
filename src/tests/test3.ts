@@ -26,3 +26,11 @@ const userB: User = {
 }
 
 console.log(userA, userB)
+
+interface Movie {
+  title: string
+}
+
+const numbers: Movie[] = []
+
+console.log(numbers)
