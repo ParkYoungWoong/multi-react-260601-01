@@ -1,5 +1,4 @@
 import { useRef, useEffect } from 'react'
-import Button from '@/components/Button'
 
 export default function App() {
   const inputRef = useRef<HTMLInputElement>(null)
@@ -15,11 +14,7 @@ export default function App() {
         ref={inputRef}
         type="text"
       />
-      <Button
-        type="submit"
-        onClick={() => console.log('클릭했어요!')}>
-        검색
-      </Button>
+      <button>검색</button>
     </>
   )
 }
