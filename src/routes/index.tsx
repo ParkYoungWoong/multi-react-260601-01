@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router'
 import Home from './pages/Home'
 import About from './pages/About'
 import SignIn from './pages/SignIn'
+import MovieDetails from './pages/MovieDetails'
 import Default from './layouts/Default'
 
 const router = createBrowserRouter([
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
       {
         path: '/signin', // http://localhost:5173/signin
         element: <SignIn />
+      },
+      {
+        path: '/movies/:movieId', // http://localhost:5173/movies/tt01234567
+        element: <MovieDetails />
       }
     ]
   }
