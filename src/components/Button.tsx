@@ -1,10 +1,14 @@
+import Loader from '@/components/Loader'
+
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'danger'
+  loading?: boolean
   children: React.ReactNode
 }
 
 export default function Button({
   variant = 'primary',
+  loading = false,
   children,
   ...restProps
 }: Props) {
@@ -17,8 +21,15 @@ export default function Button({
   return (
     <button
       {...restProps}
-      className={`h-[36px] cursor-pointer rounded-md px-[10px] duration-200 ${styles[variant]}`}>
-      {children}
+      className={`relative h-[36px] min-w-[60px] cursor-pointer rounded-md px-[10px] duration-200 ${styles[variant]}`}>
+      {loading ? (
+        <Loader
+          size={16}
+          color="white"
+        />
+      ) : (
+        children
+      )}
     </button>
   )
 }
