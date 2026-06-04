@@ -1,12 +1,20 @@
+import { lazy } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router'
-import Home from './pages/Home'
-import About from './pages/About'
-import SignIn from './pages/SignIn'
+// import Home from './pages/Home'
+// import About from './pages/About'
+// import SignIn from './pages/SignIn'
 import Movies from './pages/Movies'
 import MovieDetails from './pages/MovieDetails'
-import NotFound from './pages/NotFound'
+// import NotFound from './pages/NotFound'
 import Default from './layouts/Default'
 import { requiresAuth, guestOnly } from './loaders'
+
+const Home = lazy(() => import('./pages/Home'))
+const About = lazy(() => import('./pages/About'))
+const SignIn = lazy(() => import('./pages/SignIn'))
+// const Movies = lazy(() => import('./pages/Movies'))
+// const MovieDetails = lazy(() => import('./pages/MovieDetails'))
+const NotFound = lazy(() => import('./pages/NotFound'))
 
 const router = createBrowserRouter([
   {

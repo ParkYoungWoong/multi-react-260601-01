@@ -2,12 +2,25 @@ import { create } from 'zustand'
 import { combine } from 'zustand/middleware' // 상태의 타입 추론
 import axios from 'axios'
 
+export interface MoviesResponse {
+  Search: Movie[]
+  totalResults: string
+  Response: string
+}
+export interface Movie {
+  Title: string
+  Year: string
+  imdbID: string
+  Type: string
+  Poster: string
+}
+
 export const useMovieStore = create(
   combine(
     {
       searchText: '',
       isLoading: false,
-      movies: []
+      movies: [] as Movie[]
     },
     (set, get) => {
       return {
