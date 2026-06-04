@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router'
+import { useCountStore } from '@/stores/count'
 
 const navigations = [
   { to: '/', label: 'Home' },
@@ -8,6 +9,8 @@ const navigations = [
 ]
 
 export default function Header() {
+  const count = useCountStore(s => s.count)
+  const double = useCountStore(s => s.double)
   return (
     <header>
       {navigations.map(nav => (
@@ -20,6 +23,9 @@ export default function Header() {
           {nav.label}
         </NavLink>
       ))}
+      <h2>
+        {count} / {double}
+      </h2>
     </header>
   )
 }

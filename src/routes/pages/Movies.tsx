@@ -2,6 +2,7 @@ import axios from 'axios'
 import { useState } from 'react'
 import Button from '@/components/Button'
 import { Link, Outlet } from 'react-router'
+import MovieSearch from '@/components/movies/MovieSearch'
 
 export interface MoviesResponse {
   Search: Movie[]
@@ -17,40 +18,11 @@ export interface Movie {
 }
 
 export default function Movies() {
-  const [movies, setMovies] = useState<Movie[]>([])
-  const [searchText, setSearchText] = useState('')
-  const [isLoading, setIsLoading] = useState(false)
-
-  async function fetchMovies() {
-    if (searchText.trim().length < 3) return
-    setIsLoading(true)
-    // await new Promise(resolve => setTimeout(resolve, 3000))
-    const { data } = await axios.get(
-      `https://omdbapi.com?apikey=7035c60c&s=${searchText}`
-    )
-    // const movies = data.Search
-    setMovies(data.Search)
-    setIsLoading(false)
-  }
+  const [movies] = useState<Movie[]>([])
 
   return (
     <>
-      <div>
-        <input
-          type="text"
-          value={searchText}
-          onChange={e => setSearchText(e.target.value)}
-          onKeyDown={e => {
-            if (e.nativeEvent.isComposing) return
-            if (e.key === 'Enter') fetchMovies()
-          }}
-        />
-        <Button
-          loading={isLoading}
-          onClick={() => fetchMovies()}>
-          Search!
-        </Button>
-      </div>
+      <MovieSearch />
       <ul className="flex flex-wrap gap-5">
         {movies.map(movie => {
           return (
