@@ -47,13 +47,28 @@ export default function MovieDetails() {
       setMovie(data)
     }
     fetchMovie()
-  }, [])
+  }, [movieId])
 
   return (
     <>
       {movie && (
         <>
           <h1>{movie.Title}</h1>
+          <img
+            src={`https://img.omdbapi.com?apikey=7035c60c&i=${movieId}&h=1523`}
+            alt={movie.Title}
+          />
+          <p>{movie.Actors}</p>
+          <p>{movie.Plot}</p>
+          <ul>
+            {movie.Ratings.map(rating => {
+              return (
+                <li key={rating.Source}>
+                  {rating.Source}: {rating.Value}
+                </li>
+              )
+            })}
+          </ul>
         </>
       )}
     </>

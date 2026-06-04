@@ -16,7 +16,7 @@ export interface Movie {
   Poster: string
 }
 
-export default function App() {
+export default function Movies() {
   const [movies, setMovies] = useState<Movie[]>([])
   const [searchText, setSearchText] = useState('')
   const [isLoading, setIsLoading] = useState(false)

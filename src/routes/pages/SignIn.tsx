@@ -1,7 +1,21 @@
 import TextField from '@/components/TextField'
 import Button from '@/components/Button'
+import { useState } from 'react'
 
 export default function SignIn() {
+  const [id, setId] = useState('')
+  const [pw, setPw] = useState('')
+
+  async function signIn() {
+    if (id.trim() && pw.trim()) {
+      // const { accessToken } = await 로그인서버로전송(id, pw)
+      const accessToken =
+        'fake-access-token-qwer1234-username-HEROPY-email-thesecon@gmail.com'
+      localStorage.setItem('accessToken', accessToken)
+      // 메인페이지로 이동!
+    }
+  }
+
   return (
     <>
       <h1>Sign In!</h1>
@@ -11,13 +25,17 @@ export default function SignIn() {
         <TextField
           label="ID"
           placeholder="아이디를 입력하세요"
+          value={id}
+          onChange={e => setId(e.target.value)}
         />
         <TextField
           label="PW"
           type="password"
           placeholder="비밀번호를 입력하세요"
+          value={pw}
+          onChange={e => setPw(e.target.value)}
         />
-        <Button>로그인</Button>
+        <Button onClick={() => signIn()}>로그인</Button>
       </form>
     </>
   )
