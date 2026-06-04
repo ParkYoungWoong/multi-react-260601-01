@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useState } from 'react'
 import Button from '@/components/Button'
+import { Link } from 'react-router'
 
 export interface MoviesResponse {
   Search: Movie[]
@@ -54,12 +55,14 @@ export default function App() {
         {movies.map(movie => {
           return (
             <li key={movie.imdbID}>
-              <span>{movie.Title}</span>
-              <img
-                src={movie.Poster}
-                alt={movie.Title}
-                width={100}
-              />
+              <Link to={`/movies/${movie.imdbID}`}>
+                <span>{movie.Title}</span>
+                <img
+                  src={movie.Poster}
+                  alt={movie.Title}
+                  width={100}
+                />
+              </Link>
             </li>
           )
         })}
