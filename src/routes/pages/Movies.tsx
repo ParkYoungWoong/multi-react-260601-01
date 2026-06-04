@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { useState } from 'react'
 import Button from '@/components/Button'
-import { Link } from 'react-router'
+import { Link, Outlet } from 'react-router'
 
 export interface MoviesResponse {
   Search: Movie[]
@@ -51,12 +51,14 @@ export default function Movies() {
           검색
         </Button>
       </div>
-      <ul>
+      <ul className="flex flex-wrap gap-5">
         {movies.map(movie => {
           return (
-            <li key={movie.imdbID}>
+            <li
+              key={movie.imdbID}
+              className="w-[100px] cursor-pointer">
               <Link to={`/movies/${movie.imdbID}`}>
-                <span>{movie.Title}</span>
+                <span className="block truncate">{movie.Title}</span>
                 <img
                   src={movie.Poster}
                   alt={movie.Title}
@@ -67,6 +69,7 @@ export default function Movies() {
           )
         })}
       </ul>
+      <Outlet />
     </>
   )
 }

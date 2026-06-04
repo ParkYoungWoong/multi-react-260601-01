@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router'
+import { useParams, useNavigate } from 'react-router'
+import Modal from '@/components/Modal'
 
 export interface Movie {
   Title: string
@@ -38,6 +39,7 @@ export interface Rating {
 export default function MovieDetails() {
   const { movieId } = useParams()
   const [movie, setMovie] = useState<Movie | null>(null)
+  const navigate = useNavigate()
 
   useEffect(() => {
     async function fetchMovie() {
@@ -50,7 +52,12 @@ export default function MovieDetails() {
   }, [movieId])
 
   return (
-    <>
+    <Modal onClose={() => navigate(-1)}>
+      <button
+        className="absolute top-5 right-5 flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-[50%] bg-gray-300"
+        onClick={() => navigate(-1)}>
+        닫기
+      </button>
       {movie && (
         <>
           <h1>{movie.Title}</h1>
@@ -71,6 +78,6 @@ export default function MovieDetails() {
           </ul>
         </>
       )}
-    </>
+    </Modal>
   )
 }

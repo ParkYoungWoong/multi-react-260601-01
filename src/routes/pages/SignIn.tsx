@@ -1,12 +1,15 @@
 import TextField from '@/components/TextField'
 import Button from '@/components/Button'
 import { useState } from 'react'
-import { useNavigate } from 'react-router'
+import { useNavigate, useSearchParams } from 'react-router'
 
 export default function SignIn() {
   const [id, setId] = useState('')
   const [pw, setPw] = useState('')
   const navigate = useNavigate()
+  const [searchParams] = useSearchParams()
+
+  const redirectTo = searchParams.get('redirectTo')
 
   async function signIn() {
     if (id.trim() && pw.trim()) {
@@ -14,7 +17,7 @@ export default function SignIn() {
       const accessToken =
         'fake-access-token-qwer1234-username-HEROPY-email-thesecon@gmail.com-expired-2026-06-04-12:08:45'
       localStorage.setItem('accessToken', accessToken)
-      navigate('/')
+      navigate(redirectTo || '/')
     }
   }
 

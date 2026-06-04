@@ -28,11 +28,13 @@ const router = createBrowserRouter([
       {
         path: '/movies',
         loader: requiresAuth,
-        element: <Movies />
-      },
-      {
-        path: '/movies/:movieId', // http://localhost:5173/movies/tt01234567
-        element: <MovieDetails />
+        element: <Movies />,
+        children: [
+          {
+            path: '/movies/:movieId', // http://localhost:5173/movies/tt01234567
+            element: <MovieDetails />
+          }
+        ]
       }
     ]
   },
