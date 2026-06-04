@@ -2,10 +2,10 @@ import { useMovieStore } from '@/stores/movie'
 import Button from '@/components/Button'
 
 export default function MovieSearch() {
-  const searchText = useMovieStore(s => s.searchText)
-  const isLoading = useMovieStore(s => s.isLoading)
-  const setSearchText = useMovieStore(s => s.setSearchText)
-  const fetchMovies = useMovieStore(s => s.fetchMovies)
+  const searchText = useMovieStore(state => state.searchText)
+  const isLoading = useMovieStore(state => state.isLoading)
+  const setSearchText = useMovieStore(state => state.setSearchText)
+  const fetchMovies = useMovieStore(state => state.fetchMovies)
   return (
     <>
       <div>

@@ -11,8 +11,10 @@ export const useMovieStore = create(
     },
     (set, get) => {
       return {
-        setSearchText: function (searchText: string) {
-          set({ searchText })
+        setSearchText: function (newSearchText: string) {
+          set({
+            searchText: newSearchText
+          })
         },
         fetchMovies: async function () {
           const { searchText } = get()
