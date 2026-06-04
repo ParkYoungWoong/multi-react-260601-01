@@ -6,6 +6,7 @@ import Movies from './pages/Movies'
 import MovieDetails from './pages/MovieDetails'
 import NotFound from './pages/NotFound'
 import Default from './layouts/Default'
+import { requiresAuth, guestOnly } from './loaders'
 
 const router = createBrowserRouter([
   {
@@ -21,11 +22,12 @@ const router = createBrowserRouter([
       },
       {
         path: '/signin', // http://localhost:5173/signin
+        loader: guestOnly,
         element: <SignIn />
       },
       {
         path: '/movies',
-        loader: () => {},
+        loader: requiresAuth,
         element: <Movies />
       },
       {
