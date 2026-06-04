@@ -48,7 +48,7 @@ export default function Movies() {
         <Button
           loading={isLoading}
           onClick={() => fetchMovies()}>
-          검색
+          Search!
         </Button>
       </div>
       <ul className="flex flex-wrap gap-5">
