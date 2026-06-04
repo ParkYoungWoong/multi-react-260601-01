@@ -51,11 +51,15 @@ export default function MovieDetails() {
     fetchMovie()
   }, [movieId])
 
+  function closeModal() {
+    navigate('/movies')
+  }
+
   return (
-    <Modal onClose={() => navigate(-1)}>
+    <Modal onClose={closeModal}>
       <button
         className="absolute top-5 right-5 flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-[50%] bg-gray-300"
-        onClick={() => navigate(-1)}>
+        onClick={closeModal}>
         닫기
       </button>
       {movie && (
